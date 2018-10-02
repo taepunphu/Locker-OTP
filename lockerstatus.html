@@ -1,8 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<title>Locker Status</title>
 <meta charset="utf-8">
-<title>MQTT WebSocket</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <script src="jquery-1.11.3.min.js"></script>
 <script src="mqttws31.js"></script>
 <style>
@@ -78,18 +84,18 @@ $(document).ready(function(e) {
 	client.onMessageArrived = function(message) {
 		// $("#status").text("onMessageArrived:" + message.payloadString).removeClass().addClass("error");
 		console.log(message.payloadString);
-		if (message.payloadString == "LEDON" || message.payloadString == "LEDOFF") {
-			$("#led-on").attr("disabled", (message.payloadString == "LEDON" ? true : false));
-			$("#led-off").attr("disabled", (message.payloadString == "LEDOFF" ? true : false));
+		if (message.payloadString == "UNLOCK" || message.payloadString == "LOCK") {
+			$("#servo-unlock").attr("disabled", (message.payloadString == "UNLOCK" ? true : false));
+			$("#servo-lock").attr("disabled", (message.payloadString == "LOCK" ? true : false));
 		}
 	}
 
-	$("#led-on").click(function(e) {
-        mqttSend("/SERVO/IOT", "LEDON");
+	$("#servo-unlock").click(function(e) {
+        mqttSend("/SERVO/IOT", "UNLOCK");
     });
 	
-	$("#led-off").click(function(e) {
-        mqttSend("/SERVO/IOT", "LEDOFF");
+	$("#servo-lock").click(function(e) {
+        mqttSend("/SERVO/IOT", "LOCK");
     });
 });
 
@@ -102,9 +108,28 @@ var mqttSend = function(topic, msg) {
 </head>
 
 <body>
-<h1>MQTT WebSocket</h1>
-<h3>LED Control : <span id="status" class="connect">Connect...</span></h3>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a href="index.php" class="navbar-brand"><span>LOCKER</span>OTP</a>
+				
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		
+		<div class="row">
+			<div class="col-lg-12">
+<h1>MQTT Connect to NodeMCU</h1>
+<h3>Servo Status : <span id="status" class="connect">Connect...</span></h3>
 <!-- <hr /> -->
-<button id="led-on" disabled>ON</button>&nbsp;&nbsp;&nbsp;<button id="led-off" disabled>OFF</button>
+<button id="servo-lock" disabled>LOCK</button>
+     </div>
+   </div>
+ </div>
 </body>
 </html>

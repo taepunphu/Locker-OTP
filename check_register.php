@@ -19,8 +19,8 @@
 		'".$_POST["password"]."')";
         $query = mysqli_query($db, $sql);
         echo "<script>alert('Register Completed!')</script>"; 
-		// echo "<script>window.close();</script>";
-		echo '<meta http-equiv= "refresh" content="0; url=login_form2.php"/>';
+		echo "<script>window.close();</script>";
+		// echo '<meta http-equiv= "refresh" content="0; url=login_form2.php"/>';
 		
 	}
 		mysqli_close($db);

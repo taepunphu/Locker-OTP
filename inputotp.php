@@ -1,9 +1,8 @@
 <?php
 	session_start();
 	include ("Connection/condb.php");
-	$sql = "SELECT * FROM locker WHERE LockerID = '$_GET[id]'";
+	$sql = "UPDATE locker SET authenLockerOTP = '".$_POST["otp"]."' WHERE LockerID = '1'";
 	$query = mysqli_query($db, $sql);
-	$result = mysqli_fetch_array($query);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +17,7 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Locker Login</title>
+	<title>OTP</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
@@ -33,20 +32,16 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading">Login</div>
+				<div class="panel-heading">OTP</div>
 				<div class="panel-body">
-					<form role="form" method="post" action="check_login.php?id=<?php echo $result["LockerID"]; ?>">
+					<form role="form" method="post" action="">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="ชื่อผู้ใช้" name="username" type="text" autofocus="" required>
-							</div>
-							<div class="form-group">
-								<input class="form-control" placeholder="รหัสผ่าน" name="password" type="password" value="" required>
+								<input class="form-control" placeholder="OTP" name="otp" type="text" autofocus="" required>
 							</div>
 							
 							<!-- <a href="index.html" class="btn btn-primary">Login</a> -->
-							<button type="submit" name="submit" class="btn btn-primary">Login</button>
-							<a href="register.php"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ลงทะเบียน</button></a>
+							<button type="submit" name="submit" class="btn btn-primary">ยืนยัน</button>
 						</fieldset>
 							
 							<!-- <div class="container">				 -->

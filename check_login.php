@@ -5,6 +5,9 @@
 	and Password = '".$_POST['password']."'";
 	$query = mysqli_query($db, $sql);
 	$result = mysqli_fetch_array($query);
+	$sql2 = "SELECT * FROM locker WHERE LockerID = '$_GET[id]'";
+	$query2 = mysqli_query($db, $sql2);
+	$result2 = mysqli_fetch_array($query2);
 
 	if(!$result)
 	{
@@ -19,7 +22,15 @@
 			$_SESSION["username"] = $result["username"];
 
 			session_write_close();
-			echo '<meta http-equiv= "refresh" content="0; url=index.php"/>';
+			if($result2["LockerID"] == '1')
+			{
+				header("location:status.php?id=1");
+			}
+			if($result2["LockerID"] == '2')
+			{
+				header("location:status.php?id=2");
+			}
+			// echo '<meta http-equiv= "refresh" content="0; url=index.php"/>';
 		
 	}
 		mysqli_close($db);
