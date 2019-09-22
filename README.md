@@ -1,15 +1,15 @@
-#Tools
+# Tools
 1. Visual Studio Code IDE
 2. Arduino IDE
 3. PHP Language
 4. C++ for Arduino
 4. CloudMqtt WebSocket
 
-#Hardware
+# Hardware
 5. Servo
 6. NodeMCU
 
-#description
+# Explanation
 locker OTP Project เป็นโปรเจคที่ได้พัฒนาในตอนเรียนปีสาม 
 ความสามารถของโปรเจคนี้คือเราจะมีล็อคเกอร์ไว้สำหรับใช้ในทั่วไปโดยทุกนสามารถจองล็อคเกอร์ได้ 
 ซึ่งถ้าล็อกเกอร์ไหนถูกจองแล้วก็จะเปลี่ยนแปลงสถานะเป็นจองแล้ว และจะแสดงล็อกเกอร์เฉพาะที่ยังว่างอยู่ 
